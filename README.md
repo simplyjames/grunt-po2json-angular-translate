@@ -1,4 +1,4 @@
-# grunt-po2json-angular-translate
+# grunt-po2json-angular-translate [![Build Status](https://travis-ci.org/pchorus/grunt-po2json-angular-translate.svg)](https://travis-ci.org/pchorus/grunt-po2json-angular-translate)
 
 > grunt plugin to convert po to angangular-translate format
 
