@@ -40,11 +40,15 @@ module.exports = function(grunt) {
            string.indexOf(closingMark !== -1)){
             if (string.indexOf(openingMark) !== -1){
                 pattern = isPluralString ? openingMark : new RegExp(openingMark, 'g');
-                string = string.replace(pattern,"{{");
+                if (!isPluralString) {
+                    string = string.replace(pattern,"{{");
+                }
             }
             if (string.indexOf(closingMark) !== -1){
                 pattern = isPluralString ? closingMark : new RegExp(closingMark, 'g');
-                string = string.replace(pattern,"}}");
+                if (!isPluralString) {
+                    string = string.replace(pattern,"}}");
+                }
             }
         }
 
@@ -174,7 +178,10 @@ module.exports = function(grunt) {
 
                     }else{
                         var message = item.msgstr.length === 1 ? item.msgstr[0] : item.msgstr;
-                        message = replacePlaceholder(message,options.placeholderStructure[0],options.placeholderStructure[1],options.enableAltPlaceholders);
+                        var matches = message.match(/\{[^\}]*,\s*(plural|select)\s*,.*\}/g);
+                        var isPluralString = matches && matches.length;
+
+                        message = replacePlaceholder(message,options.placeholderStructure[0],options.placeholderStructure[1],options.enableAltPlaceholders, isPluralString);
                         strings[item.msgid] = message;
                         if (singleFile){
                             singleFileStrings[item.msgid]=message;

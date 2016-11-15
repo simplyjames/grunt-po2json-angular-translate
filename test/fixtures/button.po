@@ -28,3 +28,6 @@ msgstr "Delete Account"
 
 msgid "button/multiple-placeholder"
 msgstr "Delete { account } for { user }"
+
+msgid "button/messageformat"
+msgstr "{NAME} ist { PLURALIZE, plural, =0{nicht vorhanden} one{einmal vorhanden} other{# mal vorhanden} }."
